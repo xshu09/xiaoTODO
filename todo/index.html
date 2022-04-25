@@ -5,82 +5,170 @@
     <meta charset="utf-8">
     <style>
         * {
-            margin:0;
-            padding:0;
-        }
-        body {
-            background-color: rgb(232, 82, 55);
-            font: 16px/28px 'Microsoft YaHei';
-            background-image: url(/image/dengta.jpg);
+            margin: 0;
+            padding: 0;
         }
 
-        h1 {
+        input {
+            outline: none;
+        }
+
+        body {
+            background-color: rgb(97, 190, 98);
+            font: 16px/28px 'Microsoft YaHei';
+            display: flex;
+        }
+
+        .mid {
+            flex: 3;
+            /* width:60%; */
+            height: 768px;
+            margin: auto;
+        }
+
+        .mid h1 {
             text-align: center;
             color: aliceblue;
             padding: 25px;
+            font-weight: 400;
+            font-size: 40px;
+            margin-top: 30px;
         }
 
-        #task {
-            margin: 0;
-
+        ul {
+            margin: auto;
+            padding: 40px;
+            width: inherit;
         }
 
-        li {
-            padding: 10px;
+        .mid li {
+
+            background-color: #f6f6f6;
+            padding-left: 20px;
+            margin-top: 3px;
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 7px;
+
         }
 
         #content {
-            width: 80%;
+            width: 55%;
             height: 40px;
-            display: inline-block;
-            border: groove;
-            border-width: 3px;
-            border-radius: 10px;
-            margin: 0 auto;
-            
+            display: block;
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 7px;
+            background-color: rgba(247, 243, 238, 0.8);
+            border: none;
+            padding-left: 10px;
+
         }
 
         #content:hover {
-            border: solid;
+            background-color: rgb(247, 243, 238);
         }
 
         #content:focus {
-            -moz-box-shadow: 0 0 10px #06c;
-            -webkit-box-shadow: 0 0 10px #06c;
-            box-shadow: 0 0 10px #06c;
+            border: none;
+
         }
 
+        /* 设置focus时候无内衬黑线 */
         .add-todo {
             text-align: center;
 
         }
-        .todo  {
-            width: 70%;
-        }
+
         .ipt {
             display: flex;
             align-items: center;
+        }
+
+        .lside {
+            flex: 1;
+            background-color: rgb(243, 242, 241);
+            /* height: 800px; */
+        }
+
+        .rside {
+            flex: 1;
+            height: auto;
+            background-color: #f7f7f7;
+        }
+        svg {
+            top:50%;
+        }
+        .task1 {
+            height:30px;
+        }
+        .task1 * {
+            vertical-align:middle;
         }
     </style>
 </head>
 
 <body>
-    <h1 class="head">今日待办</h1>
-    <div class="todo">
-        <ul id="task" style="list-style: none;">
-        </ul>
-    </div>
+    <section class="lside">
+        <h1>todo 分项</h1>
+    </section>
+    <section class="mid">
+        <h1 class="head">今日待办</h1>
+        <div>
+            <ul id="task" style="list-style: none;">
+            </ul>
+            <div class="task1"style="background-color: antiquewhite; ">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
+                    </path>
+                    <!-- <g fill-rule="evenodd">
+                        <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
+                    </g> -->
+                </svg>
+                <span>this is a test view</span>
+            </div>
+            <div style="background-color: antiquewhite; border-bottom: black solid 1px;">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
+                    </path>
+                    <!-- <g fill-rule="evenodd">
+                        <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
+                    </g> -->
+                </svg>
+                <span>this is another view</span>
+            </div>
+        </div>
 
-    <!-- 1、取到这里的input组件里的text文本值，
+        <!-- 1、取到这里的input组件里的text文本值，
                 2、传入li这个组件里 -->
-    <!--设置伪类元素，鼠标放在input标签上，外框会加黑线粗，有点高亮的效果:hover -->
-    <div class="ipt">
+        <!--设置伪类元素，鼠标放在input标签上，外框会加黑线粗，有点高亮的效果:hover -->
         <input type="text" id="content">
-    </div>
-    
-    <!-- TODO:当input内容为空时，将btn置为不可操作状态，同时将颜色置为淡灰色 
+        <!-- TODO:当input内容为空时，将btn置为不可操作状态，同时将颜色置为淡灰色 
         这里我已经删除掉btn了，直接将key回车事件等价为submit-->
 
+    </section>
+    <section class="rside">
+        <h1>completed</h1>
+        <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
+            </path>
+            <!-- <g fill-rule="evenodd">
+                <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
+            </g> -->
+        </svg>
+        <input type="text" class="makesvg">
+        <script>
+            function makeCircle() {
+                
+            }
+        </script>
+    </section>
     <script>
         btn = document.getElementById('btn')
         function createtask() {
