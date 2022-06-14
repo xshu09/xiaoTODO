@@ -14,25 +14,26 @@
         }
 
         body {
-            background-color: rgb(97, 190, 98);
+            background-color: rgb(239, 246, 253);
             font: 16px/28px 'Microsoft YaHei';
             display: flex;
         }
 
         .mid {
             flex: 3;
-            /* width:60%; */
+            width: 60%;
             height: 768px;
             margin: auto;
         }
 
-        .mid h1 {
-            text-align: center;
-            color: aliceblue;
+        h1 {
+            position:absolute;
+            width:60%；
+            color: rgb(78, 81, 83);
             padding: 25px;
             font-weight: 400;
             font-size: 40px;
-            margin-top: 30px;
+
         }
 
         ul {
@@ -59,22 +60,33 @@
             display: block;
             position: fixed;
             bottom: 16px;
-            left: 50%;
+            left: 35%;
             transform: translateX(-50%);
             border-radius: 7px;
-            background-color: rgba(247, 243, 238, 0.8);
+            background-color: rgba(199, 163, 120, 0.8);
             border: none;
             padding-left: 10px;
 
         }
 
         #content:hover {
-            background-color: rgb(247, 243, 238);
+            background-color: rgb(231, 191, 143);
         }
 
         #content:focus {
             border: none;
 
+        }
+        #add {
+            position:fixed;
+            bottom:16px;
+            left:64%;
+            width:60px;
+            height:40px;
+            border-radius:7px;
+            border:none;
+            background-color:rgba(213, 195, 173, 0.8);
+            font-size:16px;
         }
 
         /* 设置focus时候无内衬黑线 */
@@ -88,72 +100,60 @@
             align-items: center;
         }
 
-        .lside {
-            flex: 1;
-            background-color: rgb(243, 242, 241);
-            /* height: 800px; */
-        }
-
         .rside {
             flex: 1;
             height: auto;
             background-color: #f7f7f7;
         }
+
         svg {
-            top:50%;
+            top: 50%;
         }
+
         .task1 {
-            height:30px;
+            height: 30px;
         }
-        .task1 * {
-            vertical-align:middle;
+
+        div * {
+            vertical-align: middle;
         }
     </style>
 </head>
 
 <body>
-    <section class="lside">
-        <h1>todo 分项</h1>
-    </section>
     <section class="mid">
-        <h1 class="head">今日待办</h1>
+        <h1 class="head">我的一天</h1>
         <div>
             <ul id="task" style="list-style: none;">
             </ul>
-            <div class="task1"style="background-color: antiquewhite; ">
-                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path
-                        d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
-                    </path>
-                    <!-- <g fill-rule="evenodd">
+            <i class="icon svgIcon ms-Icon checkbox-completed-outline-20 checkBox-hover"><svg focusable="false"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill-rule="evenodd">
+                        <path
+                            d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
+                        </path>
                         <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
-                    </g> -->
-                </svg>
-                <span>this is a test view</span>
-            </div>
-            <div style="background-color: antiquewhite; border-bottom: black solid 1px;">
-                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path
-                        d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
+                    </g>
+                </svg></i>
+            <i class="icon svgIcon ms-Icon checkbox-completed-20"><svg focusable="false"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                        d="M10.9854 15.0752l-3.546-3.58 1.066-1.056 2.486 2.509 4.509-4.509 1.06 1.061-5.575 5.575zm1.015-12.075c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z">
                     </path>
-                    <!-- <g fill-rule="evenodd">
-                        <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
-                    </g> -->
-                </svg>
-                <span>this is another view</span>
-            </div>
+                </svg></i>
         </div>
 
         <!-- 1、取到这里的input组件里的text文本值，
                 2、传入li这个组件里 -->
         <!--设置伪类元素，鼠标放在input标签上，外框会加黑线粗，有点高亮的效果:hover -->
         <input type="text" id="content">
+        <button id="add">新增</button>
         <!-- TODO:当input内容为空时，将btn置为不可操作状态，同时将颜色置为淡灰色 
         这里我已经删除掉btn了，直接将key回车事件等价为submit-->
 
     </section>
     <section class="rside">
-        <h1>completed</h1>
+        <h1>已完成</h1>
         <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path
                 d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
@@ -162,15 +162,11 @@
                 <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
             </g> -->
         </svg>
-        <input type="text" class="makesvg">
-        <script>
-            function makeCircle() {
-                
-            }
-        </script>
+        <input type="text" id="task">
+       
     </section>
     <script>
-        btn = document.getElementById('btn')
+    
         function createtask() {
             // 获取input组件里的value
             var content = document.getElementById('content').value;
@@ -183,33 +179,51 @@
                 checkBox.setAttribute("type", "checkbox");
                 var ctt = document.createTextNode(content)//考虑创建文本节点，将这个节点放到父节点后面
 
-                var li = document.createElement('li')
-                li.appendChild(checkBox);
-                li.appendChild(ctt);
+                // var li = document.createElement('li')
+                // li.appendChild(checkBox);
+                // li.appendChild(ctt);
                 //TODO:设置checkbox的左侧空隙为适当的间隔，设置css样式
                 //TODO:设置当鼠标点击checkbox，即为checked状态时，将文本ctt加上删除线，text-decoration:line-through
-                ul.appendChild(li);
+                // ul.appendChild(li);
 
                 //将btn点击后，input内容置为空。
-                document.getElementById('content').value = "";//这里的置空是生效的
+                document.getElementById("content").value = "";//这里的置空是生效的
                 //content = '';//TODO:这里置为空是生效的，只是input框内的值还在，是不是因为变量作用域的问题，还是content只是这个value的一个复制，并不是它本身
                 console.log(content)
+                
+                var icon = document.createElement("i")
+                icon.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+                    +'<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
+                    +'</path>'
+                +'</svg>';
 
-            }
+
+                var todoCreate = document.createElement('span');
+                todoCreate.innerHTML = '<span>'+ctt.data+'</span>';
+                console.log(todoCreate);
+                icon.append(todoCreate);
+                var taskbox = document.createElement('div');
+                taskbox.appendChild(icon);
+                ul.appendChild(taskbox);
+                }
             else {
-                alert('请添加您的代办任务')
+                alert('请添加您的待办')
             }
 
 
         }
+        // const btn = document.getElementById('add');
+        //     btn.addEventListener("click",createtask);
+
         // btn.onclick = createtask;监听input回车事件，删除掉button监听事件。
         document.getElementById('content').onkeydown = function (event) {
             if (event.keyCode == "13") {
                 createtask();
             }
         }
-
-
+        //svg:hover变化
+        var svg_hover = document.getElementsByName('svg')
+        
 
         //添加keyboard监听，enter keydown和提交按钮同样的效果
     </script>
