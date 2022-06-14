@@ -27,13 +27,21 @@
         }
 
         h1 {
-            position:absolute;
-            width:60%；
+            width: 60%;
             color: rgb(78, 81, 83);
             padding: 25px;
             font-weight: 400;
             font-size: 40px;
 
+        }
+
+        .head:after {
+            clear: both;
+            visibility: none;
+            height: 0px;
+            content: "";
+            display: block;
+            overflow: hidden;
         }
 
         ul {
@@ -77,16 +85,17 @@
             border: none;
 
         }
+
         #add {
-            position:fixed;
-            bottom:16px;
-            left:64%;
-            width:60px;
-            height:40px;
-            border-radius:7px;
-            border:none;
-            background-color:rgba(213, 195, 173, 0.8);
-            font-size:16px;
+            position: fixed;
+            bottom: 16px;
+            left: 64%;
+            width: 60px;
+            height: 40px;
+            border-radius: 7px;
+            border: none;
+            background-color: rgba(213, 195, 173, 0.8);
+            font-size: 16px;
         }
 
         /* 设置focus时候无内衬黑线 */
@@ -117,6 +126,10 @@
         div * {
             vertical-align: middle;
         }
+
+        #add:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -124,8 +137,8 @@
     <section class="mid">
         <h1 class="head">我的一天</h1>
         <div>
-            <ul id="task" style="list-style: none;">
-            </ul>
+            <div id="task" style="list-style: none;">
+            </div>
             <i class="icon svgIcon ms-Icon checkbox-completed-outline-20 checkBox-hover"><svg focusable="false"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill-rule="evenodd">
@@ -147,7 +160,7 @@
                 2、传入li这个组件里 -->
         <!--设置伪类元素，鼠标放在input标签上，外框会加黑线粗，有点高亮的效果:hover -->
         <input type="text" id="content">
-        <button id="add">新增</button>
+        <button type="button" id="add">新增</button>
         <!-- TODO:当input内容为空时，将btn置为不可操作状态，同时将颜色置为淡灰色 
         这里我已经删除掉btn了，直接将key回车事件等价为submit-->
 
@@ -163,10 +176,19 @@
             </g> -->
         </svg>
         <input type="text" id="task">
-       
+
     </section>
     <script>
-    
+
+        function insertAfter(newElement, targetElement) {
+            var parent = targetElement.parentNode;
+            if (parent.lastChild == targetElement) {
+                parent.appendChild(newElement);
+            } else {
+                parent.insertBefore(newElement, targetElement.nextSibling);
+            }
+        }
+        
         function createtask() {
             // 获取input组件里的value
             var content = document.getElementById('content').value;
@@ -174,7 +196,7 @@
             // 当input为空，点击btn时候，input输入框内显示红色字符提示，“请输入你的代办”
 
             if (content.length != 0) {
-                ul = document.getElementById('task');
+                el = document.getElementById('task');
                 var checkBox = document.createElement("input");
                 checkBox.setAttribute("type", "checkbox");
                 var ctt = document.createTextNode(content)//考虑创建文本节点，将这个节点放到父节点后面
@@ -190,32 +212,31 @@
                 document.getElementById("content").value = "";//这里的置空是生效的
                 //content = '';//TODO:这里置为空是生效的，只是input框内的值还在，是不是因为变量作用域的问题，还是content只是这个value的一个复制，并不是它本身
                 console.log(content)
-                
+
                 var icon = document.createElement("i")
                 icon.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
-                    +'<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
-                    +'</path>'
-                +'</svg>';
+                    + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
+                    + '</path>'
+                    + '</svg>';
 
 
                 var todoCreate = document.createElement('span');
-                todoCreate.innerHTML = '<span>'+ctt.data+'</span>';
+                todoCreate.innerHTML = '<span>' + ctt.data + '</span>';
                 console.log(todoCreate);
                 icon.append(todoCreate);
                 var taskbox = document.createElement('div');
                 taskbox.appendChild(icon);
-                ul.appendChild(taskbox);
-                }
+                el.appendChild(taskbox);
+            }
             else {
                 alert('请添加您的待办')
             }
 
 
         }
-        // const btn = document.getElementById('add');
-        //     btn.addEventListener("click",createtask);
+        const btn = document.getElementById('add');
+        btn.addEventListener("click", createtask);
 
-        // btn.onclick = createtask;监听input回车事件，删除掉button监听事件。
         document.getElementById('content').onkeydown = function (event) {
             if (event.keyCode == "13") {
                 createtask();
@@ -223,7 +244,7 @@
         }
         //svg:hover变化
         var svg_hover = document.getElementsByName('svg')
-        
+
 
         //添加keyboard监听，enter keydown和提交按钮同样的效果
     </script>
