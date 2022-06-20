@@ -3,158 +3,27 @@
 
 <head>
     <meta charset="utf-8">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+    <link href="style.css" rel="stylesheet" type="text/css" />
 
-        input {
-            outline: none;
-        }
-
-        body {
-            background-color: rgb(239, 246, 253);
-            font: 16px/28px 'Microsoft YaHei';
-            display: flex;
-        }
-
-        .mid {
-            flex: 3;
-            width: 60%;
-            height: 768px;
-            margin: auto;
-        }
-
-        h1 {
-            width: 60%;
-            color: rgb(78, 81, 83);
-            padding: 25px;
-            font-weight: 400;
-            font-size: 40px;
-
-        }
-
-        .head:after {
-            clear: both;
-            visibility: none;
-            height: 0px;
-            content: "";
-            display: block;
-            overflow: hidden;
-        }
-
-        ul {
-            margin: auto;
-            padding: 40px;
-            width: inherit;
-        }
-
-        .mid li {
-
-            background-color: #f6f6f6;
-            padding-left: 20px;
-            margin-top: 3px;
-            padding: 0 20px;
-            height: 40px;
-            line-height: 40px;
-            border-radius: 7px;
-
-        }
-
-        #content {
-            width: 55%;
-            height: 40px;
-            display: block;
-            position: fixed;
-            bottom: 16px;
-            left: 35%;
-            transform: translateX(-50%);
-            border-radius: 7px;
-            background-color: rgba(199, 163, 120, 0.8);
-            border: none;
-            padding-left: 10px;
-
-        }
-
-        #content:hover {
-            background-color: rgb(231, 191, 143);
-        }
-
-        #content:focus {
-            border: none;
-
-        }
-
-        #add {
-            position: fixed;
-            bottom: 16px;
-            left: 64%;
-            width: 60px;
-            height: 40px;
-            border-radius: 7px;
-            border: none;
-            background-color: rgba(213, 195, 173, 0.8);
-            font-size: 16px;
-        }
-
-        /* 设置focus时候无内衬黑线 */
-        .add-todo {
-            text-align: center;
-
-        }
-
-        .ipt {
-            display: flex;
-            align-items: center;
-        }
-
-        .rside {
-            flex: 1;
-            height: auto;
-            background-color: #f7f7f7;
-        }
-
-        svg {
-            top: 50%;
-        }
-
-        .task1 {
-            height: 30px;
-        }
-
-        div * {
-            vertical-align: middle;
-        }
-
-        #add:hover {
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
+    <title>xiaoToDo</title>
     <section class="mid">
         <h1 class="head">我的一天</h1>
-        <div>
-            <div id="task" style="list-style: none;">
-            </div>
-            <i class="icon svgIcon ms-Icon checkbox-completed-outline-20 checkBox-hover"><svg focusable="false"
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill-rule="evenodd">
-                        <path
-                            d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
-                        </path>
-                        <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
-                    </g>
-                </svg></i>
-            <i class="icon svgIcon ms-Icon checkbox-completed-20"><svg focusable="false"
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
-                        d="M10.9854 15.0752l-3.546-3.58 1.066-1.056 2.486 2.509 4.509-4.509 1.06 1.061-5.575 5.575zm1.015-12.075c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z">
-                    </path>
-                </svg></i>
+        <div id="taskContainer" style="list-style: none;">
         </div>
+        <i class="checked">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g fill-rule="evenodd">
+                    <path
+                        d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
+                    </path>
+                    <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
+                </g>
+            </svg>
+        </i>
+
 
         <!-- 1、取到这里的input组件里的text文本值，
                 2、传入li这个组件里 -->
@@ -166,29 +35,21 @@
 
     </section>
     <section class="rside">
-        <h1>已完成</h1>
+        <h1>已经完成</h1>
         <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path
                 d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
             </path>
-            <!-- <g fill-rule="evenodd">
+            <g fill-rule="evenodd">
                 <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
-            </g> -->
+            </g>
         </svg>
         <input type="text" id="task">
 
     </section>
     <script>
 
-        function insertAfter(newElement, targetElement) {
-            var parent = targetElement.parentNode;
-            if (parent.lastChild == targetElement) {
-                parent.appendChild(newElement);
-            } else {
-                parent.insertBefore(newElement, targetElement.nextSibling);
-            }
-        }
-        
+
         function createtask() {
             // 获取input组件里的value
             var content = document.getElementById('content').value;
@@ -196,9 +57,7 @@
             // 当input为空，点击btn时候，input输入框内显示红色字符提示，“请输入你的代办”
 
             if (content.length != 0) {
-                el = document.getElementById('task');
-                var checkBox = document.createElement("input");
-                checkBox.setAttribute("type", "checkbox");
+                el = document.getElementById('taskContainer');
                 var ctt = document.createTextNode(content)//考虑创建文本节点，将这个节点放到父节点后面
 
                 // var li = document.createElement('li')
@@ -211,22 +70,53 @@
                 //将btn点击后，input内容置为空。
                 document.getElementById("content").value = "";//这里的置空是生效的
                 //content = '';//TODO:这里置为空是生效的，只是input框内的值还在，是不是因为变量作用域的问题，还是content只是这个value的一个复制，并不是它本身
-                console.log(content)
 
-                var icon = document.createElement("i")
-                icon.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+                //uncheck icon
+                var icon_uncheck = document.createElement("i")
+                icon_uncheck.setAttribute('class', 'uncheck');
+
+                icon_uncheck.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
                     + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
                     + '</path>'
                     + '</svg>';
 
+                //checked icon
+                var icon_checked = document.createElement("i")
+                icon_checked.setAttribute('class', 'checked');
+                icon_checked.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+                    + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
+                    + '</path>'
+                    + '<path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>'
+                    + '</svg>';
+                
+                var taskContent = document.createElement('span');
+                taskContent.setAttribute('class', 'taskitem');
+                taskContent.innerHTML = '<span>' + ctt.data + '</span>';
 
-                var todoCreate = document.createElement('span');
-                todoCreate.innerHTML = '<span>' + ctt.data + '</span>';
-                console.log(todoCreate);
-                icon.append(todoCreate);
                 var taskbox = document.createElement('div');
-                taskbox.appendChild(icon);
-                el.appendChild(taskbox);
+                
+                taskbox.setAttribute('class', 'taskbox');
+                var iconSpan = document.createElement('span');
+                iconSpan.appendChild(icon_uncheck);
+                iconSpan.appendChild(icon_checked);
+                taskbox.appendChild(iconSpan);
+                iconSpan.setAttribute('class', 'checkBox');
+
+                document.getElementById('taskContainer').addEventListener('mouseover',function(e) {
+                    if (e.target.tagName.toLowerCase === 'i'){
+                        this.opacity = 1;
+                        console.log(this);
+                    }
+                })
+
+                taskbox.appendChild(taskContent)
+                if (el.firstElementChild = null){
+                    el.appendChild(taskbox);
+                }
+                else {
+                    el.insertBefore(taskbox,el.firstElementChild);
+                }
+
             }
             else {
                 alert('请添加您的待办')
@@ -242,9 +132,25 @@
                 createtask();
             }
         }
-        //svg:hover变化
-        var svg_hover = document.getElementsByName('svg')
+        const iconchange = document.getElementById('taskContainer');
+        iconchange.addEventListener('click',(e)=>{
+            let target = event.target;
+            console.log(target);
+            console.log(target.getAttribute('class'));
+            
+            if(e.target.class = 'checked')
+            {
+                e.target.style.opacity=0;
+            }
+            
+        })
 
+        //svg:hover变化
+
+
+
+//TODO:事件函数设置不成功，选取元素[0]只选择了一个，
+//TODO:遍历选择每一个icon元素
 
         //添加keyboard监听，enter keydown和提交按钮同样的效果
     </script>
