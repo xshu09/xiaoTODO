@@ -8,21 +8,11 @@
 </head>
 
 <body>
-    <title>xiaoToDo</title>
+    <title>小土豆</title>
     <section class="mid">
         <h1 class="head">我的一天</h1>
         <div id="taskContainer" style="list-style: none;">
         </div>
-        <i class="checked">
-            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <g fill-rule="evenodd">
-                    <path
-                        d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
-                    </path>
-                    <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
-                </g>
-            </svg>
-        </i>
 
 
         <!-- 1、取到这里的input组件里的text文本值，
@@ -36,19 +26,34 @@
     </section>
     <section class="rside">
         <h1>已经完成</h1>
-        <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path
-                d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">
-            </path>
-            <g fill-rule="evenodd">
-                <path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>
-            </g>
-        </svg>
+        <i class="completed">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                    d="M10.9854 15.0752l-3.546-3.58 1.066-1.056 2.486 2.509 4.509-4.509 1.06 1.061-5.575 5.575zm1.015-12.075c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z">
+                </path>
+            </svg>
+        </i>
         <input type="text" id="task">
 
     </section>
     <script>
 
+
+
+        const iconbefore = 
+                     '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+                    + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
+                    + '</path>'
+                    + '</svg>'
+                    ;
+        const iconbefore2 = 
+                    '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+                    + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
+                    + '</path>'
+                    + '<path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>'
+                    + '</svg>'
+                    ;
 
         function createtask() {
             // 获取input组件里的value
@@ -75,26 +80,19 @@
                 var icon_uncheck = document.createElement("i")
                 icon_uncheck.setAttribute('class', 'uncheck');
 
-                icon_uncheck.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
-                    + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
-                    + '</path>'
-                    + '</svg>';
+                icon_uncheck.innerHTML = iconbefore;
 
                 //checked icon
                 var icon_checked = document.createElement("i")
                 icon_checked.setAttribute('class', 'checked');
-                icon_checked.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
-                    + '<path d="M12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-17c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9">'
-                    + '</path>'
-                    + '<path d="M10.9902 13.3027l-2.487-2.51-.71.704 3.193 3.224 5.221-5.221-.707-.707z"></path>'
-                    + '</svg>';
-                
+                icon_checked.innerHTML = iconbefore2;
+
                 var taskContent = document.createElement('span');
                 taskContent.setAttribute('class', 'taskitem');
                 taskContent.innerHTML = '<span>' + ctt.data + '</span>';
 
                 var taskbox = document.createElement('div');
-                
+
                 taskbox.setAttribute('class', 'taskbox');
                 var iconSpan = document.createElement('span');
                 iconSpan.appendChild(icon_uncheck);
@@ -102,19 +100,19 @@
                 taskbox.appendChild(iconSpan);
                 iconSpan.setAttribute('class', 'checkBox');
 
-                document.getElementById('taskContainer').addEventListener('mouseover',function(e) {
-                    if (e.target.tagName.toLowerCase === 'i'){
+                document.getElementById('taskContainer').addEventListener('mouseover', function (e) {
+                    if (e.target.tagName.toLowerCase === 'i') {
                         this.opacity = 1;
                         console.log(this);
                     }
                 })
 
                 taskbox.appendChild(taskContent)
-                if (el.firstElementChild = null){
+                if (el.firstElementChild = null) {
                     el.appendChild(taskbox);
                 }
                 else {
-                    el.insertBefore(taskbox,el.firstElementChild);
+                    el.insertBefore(taskbox, el.firstElementChild);
                 }
 
             }
@@ -126,33 +124,76 @@
         }
         const btn = document.getElementById('add');
         btn.addEventListener("click", createtask);
-
+        //添加keyboard监听，enter keydown和提交按钮同样的效果
         document.getElementById('content').onkeydown = function (event) {
             if (event.keyCode == "13") {
                 createtask();
             }
         }
+
+        //TODO:事件函数设置不成功，选取元素[0]只选择了一个，
+        //TODO:遍历选择每一个icon元素
         const iconchange = document.getElementById('taskContainer');
-        iconchange.addEventListener('click',(e)=>{
-            let target = event.target;
-            console.log(target);
-            console.log(target.getAttribute('class'));
-            
-            if(e.target.class = 'checked')
-            {
-                e.target.style.opacity=0;
+        function handleover(event){
+            let target = event.target.closest('i');
+            if (!target) return;
+            if (target.getAttribute('class') != 'checked') return;
+
+
+            if (target.getAttribute('class') == 'checked') {
+                event.target.closest('i').style.opacity = 1;
             }
-            
-        })
+        }
+        function handleout(event) {
+            let target = event.target.closest('i');
+            if (!target) return;
+            if (target.getAttribute('class') != 'checked') return;
 
-        //svg:hover变化
+
+            if (target.getAttribute('class') == 'checked') {
+                event.target.closest('i').style.opacity = 0;
+            }
+        }
+        iconchange.addEventListener('mouseover', handleover);
+        iconchange.addEventListener('mouseout', handleout);
+
+        //after click icon,svg change
+        function handlechange(event){
+            let target = event.target.closest('span');
+            let textarget = target.nextSibling;
+            if (target.getAttribute('class')=='taskitem') 
+            {
+                return;
+            } else {
+                target.innerHTML = 
+            '<i class="completed">'
+            +'<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+            +'<path fill-rule="evenodd" d="M10.9854 15.0752l-3.546-3.58 1.066-1.056 2.486 2.509 4.509-4.509 1.06 1.061-5.575 5.575zm1.015-12.075c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z">'
+            +'</path>'
+            +'</svg>'
+            +'</i>';
+            textarget.classList.add('taskitem-completed');
+            // target.removeEventlistener('mouseout',handleout);
+            }
 
 
 
-//TODO:事件函数设置不成功，选取元素[0]只选择了一个，
-//TODO:遍历选择每一个icon元素
+            target2= event.target.closest('i');
+            console.log(target2);
+            if(target2.getAttribute('class')=='completed')
+            {
+                
+                textarget.classList.remove('taskitem-completed');
+                target.innerHTML = '<i class="uncheck">'+iconbefore+'</i>' + '<i class="checked">'+iconbefore2+'</i>'; 
+            }
+        }
+        iconchange.addEventListener('click', handlechange);
 
-        //添加keyboard监听，enter keydown和提交按钮同样的效果
+
+
+
+
+
     </script>
 </body>
 
